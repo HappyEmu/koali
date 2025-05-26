@@ -20,6 +20,10 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  graphQL: {
+    disable: true,
+    disablePlaygroundInProduction: true,
+  },
   collections: [Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -27,6 +31,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: vercelPostgresAdapter({
+    push: false,
     pool: {
       connectionString: process.env.DATABASE_DATABASE_URL || '',
     },
