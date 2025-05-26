@@ -47,6 +47,7 @@ export default buildConfig({
         },
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
+      addRandomSuffix: true,
     }),
   ],
 })
