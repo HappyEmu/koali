@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col h-dvh items-center justify-center mx-10">
-      <h1 className="text-3xl font-bold">🐨 Koalis Koala of the day 🐨</h1>
+      <h1 className="text-3xl font-bold text-center">🐨 Koalis Koala of the day 🐨</h1>
       <Image
         priority
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
