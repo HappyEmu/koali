@@ -8,7 +8,7 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col h-dvh items-center justify-center mx-10">
-      <h1 className="text-3xl font-bold flex flex-col items-center text-center gap-2">
+      <h1 className="text-2xl sm:text-3xl font-bold flex flex-col items-center text-center gap-2">
         <span>Koali&apos;s Koala of the day</span>
         <span>🐨 🐨 🐨</span>
       </h1>
@@ -19,7 +19,10 @@ export default async function HomePage() {
         alt={koala.alt ?? 'Koala'}
         width={koala.width ?? 0}
         height={koala.height ?? 0}
-        className="rounded-lg mt-4"
+        className="rounded-lg mt-4 max-h-[70vh]"
+        style={{
+          objectFit: 'contain',
+        }}
       />
     </div>
   )
