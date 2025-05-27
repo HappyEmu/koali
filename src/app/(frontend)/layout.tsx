@@ -12,7 +12,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body className="bg-gray-300 text-gray-900">
+      <body className="bg-black text-white">
         <main className="container mx-auto">{children}</main>
       </body>
     </html>
