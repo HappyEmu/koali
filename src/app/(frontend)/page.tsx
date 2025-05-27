@@ -1,12 +1,13 @@
 import config from '@payload-config'
 import Image from 'next/image'
 import { getPayload } from 'payload'
+import { unstable_cache as nextCache } from 'next/cache'
 
 export default async function HomePage() {
-  const koala = await getCurrentKoala()
+  const koala = await getCurrentKoalaCached()
 
   return (
-    <div className="flex flex-col h-screen items-center justify-center mx-10">
+    <div className="flex flex-col h-dvh items-center justify-center mx-10">
       <h1 className="text-3xl font-bold">🐨 Koalis Koala of the day 🐨</h1>
       <Image
         priority
@@ -34,3 +35,11 @@ async function getCurrentKoala() {
 
   return img
 }
+
+const getCurrentKoalaCached = nextCache(
+  async () => {
+    return getCurrentKoala()
+  },
+  ['currentKoala'],
+  { tags: ['currentKoala'] },
+)
