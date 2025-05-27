@@ -3,8 +3,8 @@ import React from 'react'
 import './global.css'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: "Koali's Koala of the Day",
+  description: 'Ever wondered what koala is the cutest today? Koali has the answer!',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
