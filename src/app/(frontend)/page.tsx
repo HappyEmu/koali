@@ -5,11 +5,13 @@ import { unstable_cache as nextCache } from 'next/cache'
 
 export default async function HomePage() {
   const koala = await getCurrentKoalaCached()
+
   const img = asObject(koala?.image)
+  const description = koala?.description
 
   return (
     <div className="flex flex-col h-dvh items-center justify-center mx-10">
-      <h1 className="text-2xl sm:text-3xl font-bold flex flex-col items-center text-center gap-2">
+      <h1 className="text-2 sm:text-[36pt] font-bold flex flex-col items-center text-center gap-2">
         <span>Koali&apos;s Koala of the day</span>
         <span>🐨 🐨 🐨</span>
       </h1>
@@ -22,11 +24,15 @@ export default async function HomePage() {
           alt={img.alt ?? 'Koala'}
           width={img.width ?? 0}
           height={img.height ?? 0}
-          className="rounded-lg mt-4 max-h-[70vh]"
+          className="rounded-lg shadow-2xl mt-4 max-h-[70vh]"
           style={{
             objectFit: 'contain',
           }}
         />
+      )}
+
+      {description && (
+        <p className="text-center mt-4 sm:mt-8 sm:text-xl max-w-2xl">{description}</p>
       )}
     </div>
   )

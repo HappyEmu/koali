@@ -1,1 +1,72 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme inline {
+  /* Eucalyptus Green & Cream Palette */
+  --color-eucalyptus-50: #f7f9f7;
+  --color-eucalyptus-100: #e8f0ea;
+  --color-eucalyptus-200: #d1e1d5;
+  --color-eucalyptus-300: #a8c5b0;
+  --color-eucalyptus-400: #7fb069;
+  --color-eucalyptus-500: #5a8a5e;
+  --color-eucalyptus-600: #4a6b4e;
+  --color-eucalyptus-700: #3a5a4a;
+  --color-eucalyptus-800: #2d4a3e;
+  --color-eucalyptus-900: #1f3329;
+  --color-eucalyptus-950: #0f1a14;
+
+  /* Warm Cream Palette */
+  --color-cream-50: #fdfcfa;
+  --color-cream-100: #f7f5f0;
+  --color-cream-200: #f0ebe1;
+  --color-cream-300: #e6dcc8;
+  --color-cream-400: #d9c7a3;
+  --color-cream-500: #ccb280;
+  --color-cream-600: #b89d65;
+  --color-cream-700: #9a8354;
+  --color-cream-800: #7d6a47;
+  --color-cream-900: #65553b;
+  --color-cream-950: #342c1e;
+
+  /* Earth Tones Palette */
+  --color-earth-50: #faf8f6;
+  --color-earth-100: #f4f1eb;
+  --color-earth-200: #e8dfd4;
+  --color-earth-300: #d4a574;
+  --color-earth-400: #c4956a;
+  --color-earth-500: #b5855f;
+  --color-earth-600: #9a6f4f;
+  --color-earth-700: #7d5a42;
+  --color-earth-800: #4a3a30;
+  --color-earth-900: #3c2e26;
+  --color-earth-950: #2a1f1a;
+}
+
+.solway-light {
+  font-family: 'Solway', serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.solway-regular {
+  font-family: 'Solway', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.solway-medium {
+  font-family: 'Solway', serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.solway-bold {
+  font-family: 'Solway', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.solway-extrabold {
+  font-family: 'Solway', serif;
+  font-weight: 800;
+  font-style: normal;
+}
