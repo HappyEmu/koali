@@ -1,4 +1,4 @@
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { gcsStorage } from '@payloadcms/storage-gcs'
 import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
@@ -9,6 +9,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Koalas } from './collections/Koala'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,29 +25,38 @@ export default buildConfig({
     disable: true,
     disablePlaygroundInProduction: true,
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Koalas],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: vercelPostgresAdapter({
-    push: false,
     pool: {
       connectionString: process.env.DATABASE_DATABASE_URL || '',
     },
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
-    vercelBlobStorage({
-      enabled: true,
+    payloadCloudPlugin({
+      storage: false,
+    }),
+    gcsStorage({
+      enabled: Boolean(process.env.GCS_SERVICE_ACCOUNT_PRIVATE_KEY),
       collections: {
         media: {
           prefix: 'media',
         },
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      bucket: process.env.GCS_BUCKET_NAME,
+      options: {
+        projectId: process.env.GCS_PROJECT_ID,
+        credentials: {
+          client_id: process.env.GCS_SERVICE_ACCOUNT_CLIENT_ID,
+          client_email: process.env.GCS_SERVICE_ACCOUNT_CLIENT_EMAIL,
+          private_key: process.env.GCS_SERVICE_ACCOUNT_PRIVATE_KEY,
+        },
+      },
       clientUploads: true,
     }),
   ],

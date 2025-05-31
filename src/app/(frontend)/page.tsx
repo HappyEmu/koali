@@ -12,18 +12,21 @@ export default async function HomePage() {
         <span>Koali&apos;s Koala of the day</span>
         <span>🐨 🐨 🐨</span>
       </h1>
-      <Image
-        priority
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        src={koala.url ?? ''}
-        alt={koala.alt ?? 'Koala'}
-        width={koala.width ?? 0}
-        height={koala.height ?? 0}
-        className="rounded-lg mt-4 max-h-[70vh]"
-        style={{
-          objectFit: 'contain',
-        }}
-      />
+
+      {koala && (
+        <Image
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          src={koala.url ?? ''}
+          alt={koala.alt ?? 'Koala'}
+          width={koala.width ?? 0}
+          height={koala.height ?? 0}
+          className="rounded-lg mt-4 max-h-[70vh]"
+          style={{
+            objectFit: 'contain',
+          }}
+        />
+      )}
     </div>
   )
 }
@@ -38,6 +41,10 @@ async function getCurrentKoala() {
     limit: 1,
     sort: '-createdAt',
   })
+
+  if (!img) {
+    return null
+  }
 
   return img
 }
