@@ -47,12 +47,12 @@ export default buildConfig({
         media: {
           prefix: 'media',
           disablePayloadAccessControl: true,
-          generateFileURL: ({ filename, prefix }) => {
+          /*generateFileURL: ({ filename, prefix }) => {
             const bucket = process.env.GCS_BUCKET_NAME
             const path = encodeURIComponent([prefix, filename].join('/'))
 
             return `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${path}?alt=media`
-          },
+          },*/
         },
       },
       bucket: process.env.GCS_BUCKET_NAME,

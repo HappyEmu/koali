@@ -15,11 +15,11 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@google-cloud/storage": "^7.16.0",
     "@payloadcms/db-vercel-postgres": "3.40.0",
     "@payloadcms/next": "3.40.0",
     "@payloadcms/payload-cloud": "3.40.0",
     "@payloadcms/richtext-lexical": "3.40.0",
-    "@payloadcms/storage-vercel-blob": "^3.40.0",
     "@payloadcms/storage-gcs": "^3.40.0",
     "@payloadcms/ui": "3.40.0",
     "@tailwindcss/postcss": "^4.1.7",

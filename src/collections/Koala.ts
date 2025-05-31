@@ -1,10 +1,12 @@
 import { revalidateTag } from 'next/cache'
 import type { CollectionConfig } from 'payload'
+import { makeKoalaPublic } from './hooks/koala'
 
 export const Koalas: CollectionConfig = {
   slug: 'koalas',
   hooks: {
     afterChange: [
+      makeKoalaPublic,
       () => {
         revalidateTag('currentKoala')
       },
