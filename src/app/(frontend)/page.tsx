@@ -59,9 +59,9 @@ const getCurrentKoalaCached = nextCache(
   { tags: ['currentKoala'] },
 )
 
-function asObject<T>(obj: string | number | T | undefined): T {
+function asObject<T>(obj: string | number | T | undefined): T | undefined {
   if (!obj) {
-    throw new Error(`Expected an object, but received undefined or null`)
+    return undefined
   }
 
   if (typeof obj === 'object') {
