@@ -5,6 +5,7 @@ import { unstable_cache as nextCache } from 'next/cache'
 
 export default async function HomePage() {
   const koala = await getCurrentKoalaCached()
+  const img = asObject(koala?.image)
 
   return (
     <div className="flex flex-col h-dvh items-center justify-center mx-10">
@@ -13,14 +14,14 @@ export default async function HomePage() {
         <span>🐨 🐨 🐨</span>
       </h1>
 
-      {koala && (
+      {img && (
         <Image
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          src={koala.url ?? ''}
-          alt={koala.alt ?? 'Koala'}
-          width={koala.width ?? 0}
-          height={koala.height ?? 0}
+          src={img.url ?? ''}
+          alt={img.alt ?? 'Koala'}
+          width={img.width ?? 0}
+          height={img.height ?? 0}
           className="rounded-lg mt-4 max-h-[70vh]"
           style={{
             objectFit: 'contain',
@@ -35,18 +36,19 @@ async function getCurrentKoala() {
   const payload = await getPayload({ config })
 
   const {
-    docs: [img],
+    docs: [koala],
   } = await payload.find({
-    collection: 'media',
+    collection: 'koalas',
     limit: 1,
     sort: '-createdAt',
+    depth: 2,
   })
 
-  if (!img) {
+  if (!koala) {
     return null
   }
 
-  return img
+  return koala
 }
 
 const getCurrentKoalaCached = nextCache(
@@ -56,3 +58,15 @@ const getCurrentKoalaCached = nextCache(
   ['currentKoala'],
   { tags: ['currentKoala'] },
 )
+
+function asObject<T>(obj: string | number | T | undefined): T {
+  if (!obj) {
+    throw new Error(`Expected an object, but received undefined or null`)
+  }
+
+  if (typeof obj === 'object') {
+    return obj
+  }
+
+  throw new Error(`Expected an object, but received a primitive value: '${obj}'`)
+}

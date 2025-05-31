@@ -1,7 +1,20 @@
+import { revalidateTag } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 
 export const Koalas: CollectionConfig = {
   slug: 'koalas',
+  hooks: {
+    afterChange: [
+      () => {
+        revalidateTag('currentKoala')
+      },
+    ],
+    afterDelete: [
+      () => {
+        revalidateTag('currentKoala')
+      },
+    ],
+  },
   fields: [
     {
       name: 'image',

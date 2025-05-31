@@ -46,6 +46,7 @@ export default buildConfig({
       collections: {
         media: {
           prefix: 'media',
+          // disablePayloadAccessControl: true,
         },
       },
       bucket: process.env.GCS_BUCKET_NAME,
