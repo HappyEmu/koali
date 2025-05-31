@@ -2,6 +2,10 @@ import config from '@payload-config'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import { unstable_cache as nextCache } from 'next/cache'
+import { UploadKoala } from '@/components/UploadKoala'
+import { Suspense } from 'react'
+
+export const experimental_ppr = true
 
 export default async function HomePage() {
   const koala = await getCurrentKoalaCached()
@@ -34,6 +38,10 @@ export default async function HomePage() {
       {description && (
         <p className="text-center mt-4 sm:mt-8 sm:text-xl max-w-2xl">{description}</p>
       )}
+
+      <Suspense>
+        <UploadKoala className="mt-4" />
+      </Suspense>
     </div>
   )
 }
