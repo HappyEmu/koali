@@ -12,6 +12,12 @@ const nextConfig = {
         port: '',
         pathname: `/v0/b/${bucketName}/o/**`,
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        port: '',
+        pathname: `/${bucketName}/**`,
+      },
     ],
   },
   // Your Next.js config here
