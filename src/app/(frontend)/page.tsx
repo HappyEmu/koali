@@ -11,7 +11,7 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col h-dvh items-center justify-center mx-10">
-      <h1 className="text-2 sm:text-[36pt] font-bold flex flex-col items-center text-center gap-2">
+      <h1 className="text-2xl sm:text-[36pt] font-bold flex flex-col items-center text-center gap-2">
         <span>Koali&apos;s Koala of the day</span>
         <span>🐨 🐨 🐨</span>
       </h1>
