@@ -19,7 +19,7 @@ export async function UploadKoala() {
   }
 
   const form = (
-    <Form className="flex flex-col gap-4" action={uploadKoalaAction}>
+    <Form className="flex flex-col gap-4 mt-4" action={uploadKoalaAction}>
       <Field>
         <Label>File</Label>
         <Input id="file" name="file" type="file" required />
