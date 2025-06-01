@@ -40,7 +40,7 @@ export default async function HomePage() {
       )}
 
       <Suspense>
-        <UploadKoala className="mt-4" />
+        <UploadKoala />
       </Suspense>
     </div>
   )

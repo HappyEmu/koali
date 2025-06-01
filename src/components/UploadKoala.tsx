@@ -1,21 +1,16 @@
+import { PropsWithChildren } from 'react'
 import { getPayload } from 'payload'
-import Form from 'next/form'
 import config from '@payload-config'
 import { headers } from 'next/headers'
-import { PropsWithChildren } from 'react'
-import { cn } from '@/lib/utils'
+import Form from 'next/form'
+import { UploadKoalaDrawer } from './UploadKoalaDrawer'
+import { Input } from './ui/input'
+import { Label as UiLabel } from './ui/label'
+import { Textarea } from './ui/textarea'
 import { uploadKoalaAction } from '@/actions/upload'
 import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Textarea } from './ui/textarea'
-import { Label as UiLabel } from './ui/label'
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from './ui/drawer'
 
-type Props = {
-  className?: string
-}
-
-export async function UploadKoala({ className }: Props) {
+export async function UploadKoala() {
   const payload = await getPayload({ config })
   const { user } = await payload.auth({ headers: await headers() })
 
@@ -23,34 +18,28 @@ export async function UploadKoala({ className }: Props) {
     return null
   }
 
-  return (
-    <Drawer direction="right">
-      <DrawerTrigger asChild>
-        <Button className="mt-4 absolute bottom-4 left-4">Upload</Button>
-      </DrawerTrigger>
-      <DrawerContent className="dark bg-eucalyptus-600 p-4">
-        <DrawerTitle>Upload a new Koala</DrawerTitle>
-        <Form className={cn('flex flex-col gap-4', className)} action={uploadKoalaAction}>
-          <Field>
-            <Label>File</Label>
-            <Input id="file" name="file" type="file" required />
-          </Field>
+  const form = (
+    <Form className="flex flex-col gap-4" action={uploadKoalaAction}>
+      <Field>
+        <Label>File</Label>
+        <Input id="file" name="file" type="file" required />
+      </Field>
 
-          <Field>
-            <Label htmlFor="description">Description</Label>
-            <Textarea id="description" name="description"></Textarea>
-          </Field>
+      <Field>
+        <Label htmlFor="description">Description</Label>
+        <Textarea id="description" name="description"></Textarea>
+      </Field>
 
-          <Field>
-            <Label htmlFor="date">Date</Label>
-            <Input id="date" name="date" type="date" required />
-          </Field>
+      <Field>
+        <Label htmlFor="date">Date</Label>
+        <Input id="date" name="date" type="date" required />
+      </Field>
 
-          <Button type="submit">Upload</Button>
-        </Form>
-      </DrawerContent>
-    </Drawer>
+      <Button type="submit">Upload</Button>
+    </Form>
   )
+
+  return <UploadKoalaDrawer form={form} />
 }
 
 function Field({ children }: PropsWithChildren) {
