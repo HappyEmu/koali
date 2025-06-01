@@ -2,9 +2,14 @@ import { getPayload } from 'payload'
 import Form from 'next/form'
 import config from '@payload-config'
 import { headers } from 'next/headers'
-import { cn } from '@/util'
 import { PropsWithChildren } from 'react'
+import { cn } from '@/lib/utils'
 import { uploadKoalaAction } from '@/actions/upload'
+import { Button } from './ui/button'
+import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
+import { Label as UiLabel } from './ui/label'
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from './ui/drawer'
 
 type Props = {
   className?: string
@@ -19,38 +24,32 @@ export async function UploadKoala({ className }: Props) {
   }
 
   return (
-    <Form
-      className={cn('flex flex-col gap-4 w-full max-w-[calc(min(480px,100%))]', className)}
-      action={uploadKoalaAction}
-    >
-      <Field>
-        <Label>File</Label>
-        <input
-          id="file"
-          name="file"
-          type="file"
-          className="p-2 px-4 border rounded-lg text-center cursor-pointer w-full text-xs"
-        />
-      </Field>
+    <Drawer direction="right">
+      <DrawerTrigger asChild>
+        <Button className="mt-4 absolute bottom-4 left-4">Upload</Button>
+      </DrawerTrigger>
+      <DrawerContent className="dark bg-eucalyptus-600 p-4">
+        <DrawerTitle>Upload a new Koala</DrawerTitle>
+        <Form className={cn('flex flex-col gap-4', className)} action={uploadKoalaAction}>
+          <Field>
+            <Label>File</Label>
+            <Input id="file" name="file" type="file" required />
+          </Field>
 
-      <Field>
-        <Label htmlFor="description">Description</Label>
-        <textarea
-          id="description"
-          name="description"
-          className="border rounded-lg px-2 p-1  w-full"
-        ></textarea>
-      </Field>
+          <Field>
+            <Label htmlFor="description">Description</Label>
+            <Textarea id="description" name="description"></Textarea>
+          </Field>
 
-      <Field>
-        <Label htmlFor="date">Date</Label>
-        <input id="date" name="date" type="date" className="border rounded-lg px-2 p-1" />
-      </Field>
+          <Field>
+            <Label htmlFor="date">Date</Label>
+            <Input id="date" name="date" type="date" required />
+          </Field>
 
-      <button className="border rounded-lg p-1" type="submit">
-        Upload
-      </button>
-    </Form>
+          <Button type="submit">Upload</Button>
+        </Form>
+      </DrawerContent>
+    </Drawer>
   )
 }
 
@@ -60,8 +59,8 @@ function Field({ children }: PropsWithChildren) {
 
 function Label({ htmlFor, children }: PropsWithChildren<{ htmlFor?: string }>) {
   return (
-    <label htmlFor={htmlFor} className="text-xs">
+    <UiLabel htmlFor={htmlFor} className="text-xs">
       {children}
-    </label>
+    </UiLabel>
   )
 }
