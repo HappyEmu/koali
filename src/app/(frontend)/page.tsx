@@ -5,8 +5,6 @@ import { unstable_cache as nextCache } from 'next/cache'
 import { UploadKoala } from '@/components/UploadKoala'
 import { Suspense } from 'react'
 
-export const experimental_ppr = true
-
 export default async function HomePage() {
   const koala = await getCurrentKoalaCached()
 
