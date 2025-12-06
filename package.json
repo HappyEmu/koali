@@ -31,7 +31,7 @@
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "lucide-react": "^0.511.0",
-    "next": "^15.4.0-canary.59",
+    "next": "15.4.8",
     "payload": "3.40.0",
     "postcss": "^8.5.3",
     "react": "19.1.0",
