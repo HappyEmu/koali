@@ -27,7 +27,7 @@ export default async function HomePage() {
           alt={img.alt ?? 'Koala'}
           width={img.width ?? 0}
           height={img.height ?? 0}
-          className="rounded-lg shadow-2xl mt-4 max-h-[70vh]"
+          className="rounded-lg drop-shadow-2xl mt-4 max-h-[70vh]"
           style={{
             objectFit: 'contain',
           }}
