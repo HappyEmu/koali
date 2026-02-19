@@ -32,6 +32,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: vercelPostgresAdapter({
+    push: false,
     pool: {
       connectionString: process.env.DATABASE_DATABASE_URL || '',
     },
