@@ -186,5 +186,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(
+      ellipse 140% 80% at 50% 0%,
+      var(--color-eucalyptus-700) 0%,
+      var(--color-eucalyptus-800) 45%,
+      var(--color-eucalyptus-950) 100%
+    );
+    min-height: 100dvh;
   }
 }

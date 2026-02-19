@@ -18,7 +18,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body className={`bg-eucalyptus-800 text-cream-100 ${solway.className}`}>
+      <body className={`bg-eucalyptus-800 text-cream-100 antialiased ${solway.className}`}>
         <main className="container mx-auto">{children}</main>
       </body>
     </html>
